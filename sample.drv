@@ -1,0 +1,18 @@
+class Derive:
+    pass
+
+
+Derive(
+    [("out", "/nix/store/l1b9680aha0linamfv597j12vfwv12rm-hello-nix", "", "")],
+    [],
+    [],
+    "aarch64-darwin",
+    "/bin/bash",
+    [],
+    [
+        ("builder", "/bin/bash"),
+        ("name", "hello-nix"),
+        ("out", "/nix/store/l1b9680aha0linamfv597j12vfwv12rm-hello-nix"),
+        ("system", "aarch64-darwin"),
+    ],
+)
