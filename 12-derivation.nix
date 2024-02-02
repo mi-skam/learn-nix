@@ -2,6 +2,6 @@ let
   simpleDerivation = derivation {
     name = "hello-nix";
     system = builtins.currentSystem;
-    builder = "my-builder";
+    builder = "/bin/bash";
   };
 in simpleDerivation
