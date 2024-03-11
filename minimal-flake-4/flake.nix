@@ -1,15 +1,17 @@
 { 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs";
+    flake-utils.url = "github:numtide/flake-utils";
   };
   
-  outputs = { self, nixpkgs }:
-    let pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-    in {
-    packages.aarch64-darwin.hello = pkgs.hello;
+  outputs = { self, nixpkgs, flake-utils }:
+    flake-utils.lib.eachDefaultSystem (system:
+      let pkgs = nixpkgs.legacyPackages.${system};
+      in {
+      packages.hello = pkgs.hello;
 
-    devShells.aarch64-darwin.default =
-      pkgs.mkShell { buildInputs = with pkgs; [ self.packages.aarch64-darwin.hello cowsay ]; }; 
+      devShells.default =
+        pkgs.mkShell { buildInputs = with pkgs; [ self.packages.${system}.hello cowsay ]; }; 
 
-  };
+  });
 }
